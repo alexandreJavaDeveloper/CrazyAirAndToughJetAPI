@@ -1,6 +1,6 @@
 package com.crazyair.model;
 
-public class CrazyAirFlightReponse
+public class CrazyAirFlightResponse
 {
     private String airline;
 
@@ -16,11 +16,11 @@ public class CrazyAirFlightReponse
 
     private String arrivalDate;
 
-    public CrazyAirFlightReponse()
+    public CrazyAirFlightResponse()
     {
     }
 
-    public CrazyAirFlightReponse(final String airline, final double price, final char cabinclass, final String departureAirportCode,
+    public CrazyAirFlightResponse(final String airline, final double price, final char cabinclass, final String departureAirportCode,
         final String destinationAirportCode, final String departureDate, final String arrivalDate)
     {
         super();

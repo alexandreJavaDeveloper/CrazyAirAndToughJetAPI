@@ -1,6 +1,6 @@
 package com.crazyair.model;
 
-public class ToughJetFlightReponse
+public class ToughJetFlightResponse
 {
     private String carrier; // airline
 
@@ -26,11 +26,11 @@ public class ToughJetFlightReponse
 
     private String returnYear;
 
-    public ToughJetFlightReponse()
+    public ToughJetFlightResponse()
     {
     }
 
-    public ToughJetFlightReponse(final String carrier, final double basePrice, final double tax, final double discount, final String departureAirportName,
+    public ToughJetFlightResponse(final String carrier, final double basePrice, final double tax, final double discount, final String departureAirportName,
         final String arrivalAirportName, final String departureDay, final Integer departureMonth, final String departureYear, final String returnDay,
         final Integer returnMonth, final String returnYear)
     {
