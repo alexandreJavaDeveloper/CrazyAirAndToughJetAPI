@@ -38,7 +38,7 @@ public class SuppliersTest
     {
         final String url = "http://localhost:8090/crazyair/{request}";
 
-        final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR", "LHR", "05-10-2010", "06-10-2013", 4);
+        final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR aaaaaa", "LHR", "05-10-2010", "06-10-2013", 4);
 
         final ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File("file.json"), requestObject);
