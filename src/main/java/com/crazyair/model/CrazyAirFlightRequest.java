@@ -1,5 +1,6 @@
 package com.crazyair.model;
 
+
 public class CrazyAirFlightRequest
 {
     private String origin;
