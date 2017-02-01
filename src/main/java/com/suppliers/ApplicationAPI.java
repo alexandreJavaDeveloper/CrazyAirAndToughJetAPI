@@ -1,4 +1,4 @@
-package com.crazyair;
+package com.suppliers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

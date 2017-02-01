@@ -1,10 +1,10 @@
-package com.crazyair.controller.factory;
+package com.suppliers.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crazyair.model.CrazyAirFlightResponse;
-import com.crazyair.model.ToughJetFlightResponse;
+import com.suppliers.model.CrazyAirFlightResponse;
+import com.suppliers.model.ToughJetFlightResponse;
 
 public class FactoryMock
 {

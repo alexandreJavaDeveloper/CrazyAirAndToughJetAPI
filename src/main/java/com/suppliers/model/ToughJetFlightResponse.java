@@ -1,4 +1,4 @@
-package com.crazyair.model;
+package com.suppliers.model;
 
 public class ToughJetFlightResponse
 {
