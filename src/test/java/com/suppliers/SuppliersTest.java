@@ -24,61 +24,64 @@ import com.suppliers.model.ToughJetFlightRequest;
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class SuppliersTest
 {
-	private RestTemplate restTemplate;
+    private static final String BASE_URL = "http://localhost:8090/";
 
-	@Before
-	public void setup()
-	{
-		this.restTemplate = new RestTemplate();
-	}
+    private RestTemplate restTemplate;
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testValidSearchSolutionCrazyAir() throws JsonGenerationException, JsonMappingException, IOException
-	{
-		final String url = "http://localhost:8090/crazyair/{request}";
+    @Before
+    public void setup()
+    {
+        this.restTemplate = new RestTemplate();
+    }
 
-		final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR aaaaaa", "LHR", "05-10-2010", "06-10-2013", 4);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testValidSearchSolutionCrazyAir() throws JsonGenerationException, JsonMappingException, IOException
+    {
+        final String url = SuppliersTest.BASE_URL + "crazyair/{request}";
 
-		final ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(new File("file.json"), requestObject);
+        final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR", "LHR", "05-10-2010", "06-10-2013", 4);
 
-		final String requestJson = mapper.writeValueAsString(requestObject);
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("file.json"), requestObject);
 
-		final List<Map<String, String>> responseJson = this.restTemplate.getForObject(url, List.class, requestJson);
+        final String requestJson = mapper.writeValueAsString(requestObject);
 
-		Assert
-		.assertEquals(
-				"{airline=crazytair, price=100.1, cabinclass=E, departureAirportCode=LHR, destinationAirportCode=LHR, departureDate=01-15-2010, arrivalDate=01-15-2012}",
-				responseJson.get(0).toString());
-		Assert
-		.assertEquals(
-				"{airline=crazytair, price=100.1, cabinclass=B, departureAirportCode=LHR, destinationAirportCode=LHR, departureDate=01-15-2010, arrivalDate=01-15-2012}",
-				responseJson.get(1).toString());
-	}
+        final List<Map<String, String>> responseJson = this.restTemplate.getForObject(url, List.class, requestJson);
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testValidSearchSolutionToughJet() throws JsonGenerationException, JsonMappingException, IOException
-	{
-		final String url = "http://localhost:8090/toughjet/{request}";
+        System.out.println("Oi");
+        Assert
+        .assertEquals(
+            "{airline=crazytair, price=100.1, cabinclass=E, departureAirportCode=LHR, destinationAirportCode=LHR, departureDate=01-15-2010, arrivalDate=01-15-2012}",
+            responseJson.get(0).toString());
+        Assert
+        .assertEquals(
+            "{airline=crazytair, price=100.1, cabinclass=B, departureAirportCode=LHR, destinationAirportCode=LHR, departureDate=01-15-2010, arrivalDate=01-15-2012}",
+            responseJson.get(1).toString());
+    }
 
-		final ToughJetFlightRequest requestObject = new ToughJetFlightRequest("LRS", "AMS", "11", new Integer(12), "2010", "2", new Integer(11), "2011", 4);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testValidSearchSolutionToughJet() throws JsonGenerationException, JsonMappingException, IOException
+    {
+        final String url = SuppliersTest.BASE_URL + "toughjet/{request}";
 
-		final ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(new File("file.json"), requestObject);
+        final ToughJetFlightRequest requestObject = new ToughJetFlightRequest("LRS", "AMS", "11", new Integer(12), "2010", "2", new Integer(11), "2011", 4);
 
-		final String requestJson = mapper.writeValueAsString(requestObject);
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("file.json"), requestObject);
 
-		final List<Map<String, String>> responseJson = this.restTemplate.getForObject(url, List.class, requestJson);
+        final String requestJson = mapper.writeValueAsString(requestObject);
 
-		Assert
-		.assertEquals(
-				"{carrier=ToughJet, basePrice=1000.0, tax=5.0, discount=4.0, departureAirportName=LHR, arrivalAirportName=LHR, departureDay=1, departureMonth=10, departureYear=2010, returnDay=5, returnMonth=5, returnYear=2010}",
-				responseJson.get(0).toString());
-		Assert
-		.assertEquals(
-				"{carrier=ToughJet, basePrice=2000.0, tax=5.0, discount=4.0, departureAirportName=LHR, arrivalAirportName=LHR, departureDay=2, departureMonth=11, departureYear=2011, returnDay=4, returnMonth=5, returnYear=2011}",
-				responseJson.get(1).toString());
-	}
+        final List<Map<String, String>> responseJson = this.restTemplate.getForObject(url, List.class, requestJson);
+
+        Assert
+        .assertEquals(
+            "{carrier=ToughJet, basePrice=1000.0, tax=5.0, discount=4.0, departureAirportName=LHR, arrivalAirportName=LHR, departureDay=1, departureMonth=10, departureYear=2010, returnDay=5, returnMonth=5, returnYear=2010}",
+            responseJson.get(0).toString());
+        Assert
+        .assertEquals(
+            "{carrier=ToughJet, basePrice=2000.0, tax=5.0, discount=4.0, departureAirportName=LHR, arrivalAirportName=LHR, departureDay=2, departureMonth=11, departureYear=2011, returnDay=4, returnMonth=5, returnYear=2011}",
+            responseJson.get(1).toString());
+    }
 }
