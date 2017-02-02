@@ -30,83 +30,87 @@ import com.suppliers.model.ToughJetFlightResponse;
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class SuppliersTest
 {
-	private static final String BASE_URL = "http://localhost:8090/";
+    private static final String BASE_URL = "http://localhost:8090/";
 
-	private RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-	@Before
-	public void setup()
-	{
-		this.restTemplate = new RestTemplate();
-	}
+    @Before
+    public void setup()
+    {
+        this.restTemplate = new RestTemplate();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testValidSearchSolutionCrazyAir() throws JsonGenerationException, JsonMappingException, IOException
-	{
-		final String url = SuppliersTest.BASE_URL + "crazyair";
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testValidSearchSolutionCrazyAir() throws JsonGenerationException, JsonMappingException, IOException
+    {
+        final String url = SuppliersTest.BASE_URL + "crazyair";
 
-		final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR", "LHR", "10-10-2010 10:15:30", "11-10-2013 11:15:30", 4);
+        final CrazyAirFlightRequest requestObject = new CrazyAirFlightRequest("LHR", "LHR", "10-10-2010 10:15:30", "11-10-2013 11:15:30", 4);
 
-		final ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(new File("file.json"), requestObject);
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("file.json"), requestObject);
 
-		final String requestJson = mapper.writeValueAsString(requestObject);
+        final String requestJson = mapper.writeValueAsString(requestObject);
 
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-		final HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-		final List<Map<String, String>> responseJson = this.restTemplate.postForObject(url, entity, List.class);
+        final HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+        final List<Map<String, String>> responseJson = this.restTemplate.postForObject(url, entity, List.class);
 
-		final String listAsJson = mapper.writeValueAsString(responseJson);
+        final String listAsJson = mapper.writeValueAsString(responseJson);
 
-		// convert from json to List
-		final List<CrazyAirFlightResponse> crazyAirFlightResponse = mapper.readValue(listAsJson, new TypeReference<List<CrazyAirFlightResponse>>(){});
+        // convert from json to List
+        final List<CrazyAirFlightResponse> crazyAirFlightResponse = mapper.readValue(listAsJson, new TypeReference<List<CrazyAirFlightResponse>>()
+        {
+        });
 
-		Assert.assertEquals(2, crazyAirFlightResponse.size());
+        Assert.assertEquals(2, crazyAirFlightResponse.size());
 
-		Assert.assertEquals("CrazyAir", crazyAirFlightResponse.get(0).getAirline());
-		Assert.assertEquals("11-15-2012 15:13:15", crazyAirFlightResponse.get(0).getArrivalDate());
-		Assert.assertEquals(new Double(100.101010), new Double(crazyAirFlightResponse.get(0).getPrice()));
+        Assert.assertEquals("CrazyAir", crazyAirFlightResponse.get(0).getAirline());
+        Assert.assertEquals("11-15-2012 15:13:15", crazyAirFlightResponse.get(0).getArrivalDate());
+        Assert.assertEquals(new Double(100.101010), new Double(crazyAirFlightResponse.get(0).getPrice()));
 
-		Assert.assertEquals("CrazyAir", crazyAirFlightResponse.get(1).getAirline());
-		Assert.assertEquals("11-16-2012 05:30:30", crazyAirFlightResponse.get(1).getArrivalDate());
-		Assert.assertEquals(new Double(90.101010), new Double(crazyAirFlightResponse.get(1).getPrice()));
-	}
+        Assert.assertEquals("CrazyAir", crazyAirFlightResponse.get(1).getAirline());
+        Assert.assertEquals("11-16-2012 05:30:30", crazyAirFlightResponse.get(1).getArrivalDate());
+        Assert.assertEquals(new Double(90.101010), new Double(crazyAirFlightResponse.get(1).getPrice()));
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testValidSearchSolutionToughJet() throws JsonGenerationException, JsonMappingException, IOException
-	{
-		final String url = SuppliersTest.BASE_URL + "toughjet";
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testValidSearchSolutionToughJet() throws JsonGenerationException, JsonMappingException, IOException
+    {
+        final String url = SuppliersTest.BASE_URL + "toughjet";
 
-		final ToughJetFlightRequest requestObject = new ToughJetFlightRequest("LRS", "AMS", "11", new Integer(12), "2010", "2", new Integer(11), "2011", 4);
+        final ToughJetFlightRequest requestObject = new ToughJetFlightRequest("LRS", "AMS", 11, 12, 2010, 2, 11, 2011, 4);
 
-		final ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(new File("file.json"), requestObject);
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("file.json"), requestObject);
 
-		final String requestJson = mapper.writeValueAsString(requestObject);
+        final String requestJson = mapper.writeValueAsString(requestObject);
 
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-		final HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-		final List<Map<String, String>> responseJson = this.restTemplate.postForObject(url, entity, List.class);
+        final HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+        final List<Map<String, String>> responseJson = this.restTemplate.postForObject(url, entity, List.class);
 
-		final String listAsJson = mapper.writeValueAsString(responseJson);
+        final String listAsJson = mapper.writeValueAsString(responseJson);
 
-		// convert from json to List
-		final List<ToughJetFlightResponse> toughJetFlightResponse = mapper.readValue(listAsJson, new TypeReference<List<ToughJetFlightResponse>>(){});
+        // convert from json to List
+        final List<ToughJetFlightResponse> toughJetFlightResponse = mapper.readValue(listAsJson, new TypeReference<List<ToughJetFlightResponse>>()
+        {
+        });
 
-		Assert.assertEquals(2, toughJetFlightResponse.size());
+        Assert.assertEquals(2, toughJetFlightResponse.size());
 
-		Assert.assertEquals("ToughJet", toughJetFlightResponse.get(0).getCarrier());
-		Assert.assertEquals(new Integer(10), toughJetFlightResponse.get(0).getDepartureMonth());
-		Assert.assertEquals(new Double(1000.0010), new Double(toughJetFlightResponse.get(0).getBasePrice()));
+        Assert.assertEquals("ToughJet", toughJetFlightResponse.get(0).getCarrier());
+        Assert.assertEquals(10, toughJetFlightResponse.get(0).getDepartureMonth());
+        Assert.assertEquals(new Double(1000.0010), new Double(toughJetFlightResponse.get(0).getBasePrice()));
 
-		Assert.assertEquals("ToughJet", toughJetFlightResponse.get(1).getCarrier());
-		Assert.assertEquals(new Integer(11), toughJetFlightResponse.get(1).getDepartureMonth());
-		Assert.assertEquals(new Double(2000.00), new Double(toughJetFlightResponse.get(1).getBasePrice()));
-	}
+        Assert.assertEquals("ToughJet", toughJetFlightResponse.get(1).getCarrier());
+        Assert.assertEquals(11, toughJetFlightResponse.get(1).getDepartureMonth());
+        Assert.assertEquals(new Double(2000.00), new Double(toughJetFlightResponse.get(1).getBasePrice()));
+    }
 }

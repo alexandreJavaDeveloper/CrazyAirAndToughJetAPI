@@ -14,25 +14,25 @@ public class ToughJetFlightResponse
 
     private String arrivalAirportName; //destinationAirportCode
 
-    private String departureDay;
+    private int departureDay;
 
-    private Integer departureMonth;
+    private int departureMonth;
 
-    private String departureYear;
+    private int departureYear;
 
-    private String returnDay;
+    private int returnDay;
 
-    private Integer returnMonth;
+    private int returnMonth;
 
-    private String returnYear;
+    private int returnYear;
 
     public ToughJetFlightResponse()
     {
     }
 
     public ToughJetFlightResponse(final String carrier, final double basePrice, final double tax, final double discount, final String departureAirportName,
-        final String arrivalAirportName, final String departureDay, final Integer departureMonth, final String departureYear, final String returnDay,
-        final Integer returnMonth, final String returnYear)
+        final String arrivalAirportName, final int departureDay, final int departureMonth, final int departureYear, final int returnDay, final int returnMonth,
+        final int returnYear)
     {
         super();
         this.carrier = carrier;
@@ -109,62 +109,62 @@ public class ToughJetFlightResponse
         this.arrivalAirportName = arrivalAirportName;
     }
 
-    public String getDepartureDay()
+    public int getDepartureDay()
     {
         return this.departureDay;
     }
 
-    public void setDepartureDay(final String departureDay)
+    public void setDepartureDay(final int departureDay)
     {
         this.departureDay = departureDay;
     }
 
-    public Integer getDepartureMonth()
+    public int getDepartureMonth()
     {
         return this.departureMonth;
     }
 
-    public void setDepartureMonth(final Integer departureMonth)
+    public void setDepartureMonth(final int departureMonth)
     {
         this.departureMonth = departureMonth;
     }
 
-    public String getDepartureYear()
+    public int getDepartureYear()
     {
         return this.departureYear;
     }
 
-    public void setDepartureYear(final String departureYear)
+    public void setDepartureYear(final int departureYear)
     {
         this.departureYear = departureYear;
     }
 
-    public String getReturnDay()
+    public int getReturnDay()
     {
         return this.returnDay;
     }
 
-    public void setReturnDay(final String returnDay)
+    public void setReturnDay(final int returnDay)
     {
         this.returnDay = returnDay;
     }
 
-    public Integer getReturnMonth()
+    public int getReturnMonth()
     {
         return this.returnMonth;
     }
 
-    public void setReturnMonth(final Integer returnMonth)
+    public void setReturnMonth(final int returnMonth)
     {
         this.returnMonth = returnMonth;
     }
 
-    public String getReturnYear()
+    public int getReturnYear()
     {
         return this.returnYear;
     }
 
-    public void setReturnYear(final String returnYear)
+    public void setReturnYear(final int returnYear)
     {
         this.returnYear = returnYear;
     }
