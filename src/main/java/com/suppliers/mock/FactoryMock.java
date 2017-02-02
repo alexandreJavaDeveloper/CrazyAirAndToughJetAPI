@@ -3,7 +3,9 @@ package com.suppliers.mock;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.suppliers.model.CrazyAirFlightRequest;
 import com.suppliers.model.CrazyAirFlightResponse;
+import com.suppliers.model.ToughJetFlightRequest;
 import com.suppliers.model.ToughJetFlightResponse;
 
 public class FactoryMock
@@ -34,22 +36,24 @@ public class FactoryMock
 
     private void fillToughJetFlights()
     {
-        final ToughJetFlightResponse flight1 = new ToughJetFlightResponse("ToughJet", 1000.0010, 6.00, 7.00, "LHR", "LHR", 1, new Integer(10), 2010, 5,
-            new Integer(5), 2010);
-        final ToughJetFlightResponse flight2 = new ToughJetFlightResponse("ToughJet", 2000.00, 5.00, 4.00, "LHR", "LHR", 2, new Integer(11), 2011, 4,
-            new Integer(5), 2011);
+        final ToughJetFlightResponse flight1 = new ToughJetFlightResponse("ToughJet", 1000.0010, 6.00, 7.00, "LHR", "LHR", 1, 10, 2010, 5, 5, 2010);
+        final ToughJetFlightResponse flight2 = new ToughJetFlightResponse("ToughJet", 2000.00, 5.00, 4.00, "LHR", "LHR", 2, 11, 2011, 4, 5, 2011);
 
         this.toughJetFlights.add(flight1);
         this.toughJetFlights.add(flight2);
     }
 
-    public List<CrazyAirFlightResponse> getCrazyAirFlights()
+    @SuppressWarnings("unused")
+    public List<CrazyAirFlightResponse> getCrazyAirFlights(final CrazyAirFlightRequest requestJson)
     {
+        // do something as filter to return the appropriate result
         return this.crazyAirFlights;
     }
 
-    public List<ToughJetFlightResponse> getToughJetFlights()
+    @SuppressWarnings("unused")
+    public List<ToughJetFlightResponse> getToughJetFlights(final ToughJetFlightRequest requestJson)
     {
+        // do something as filter to return the appropriate result
         return this.toughJetFlights;
     }
 }
